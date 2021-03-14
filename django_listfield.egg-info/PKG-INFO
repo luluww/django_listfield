@@ -1,0 +1,11 @@
+Metadata-Version: 1.0
+Name: django-listfield
+Version: 0.1
+Summary: Add listfield for Django model and form
+Home-page: #
+Author: Weilu Wang
+Author-email: wandawwl@gmail.com
+License: MIT
+Description: UNKNOWN
+Keywords: python,django,listfield
+Platform: UNKNOWN

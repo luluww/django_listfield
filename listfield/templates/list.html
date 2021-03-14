@@ -1,0 +1,52 @@
+{% block css %}
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+window.onload = function(){
+	var target_input = document.getElementById('id_' + '{{  widget.name }}');
+	var parentNode = document.getElementById('id_list');
+	var btn_add = document.getElementById('btn_list_add');
+	var btn_remove = document.getElementById('btn_list_remove');
+
+	function createInputElement(counter, value = ''){
+		var elem = target_input.cloneNode(true);
+		elem.type = "text";
+		elem.setAttribute('id', target_input.id + '_' + counter);
+		elem.value = value;
+		return elem;
+	}
+
+	function lastElemOfArray(arr){
+		return arr[arr.length - 1];
+	}
+	
+	if(target_input.value.length > 0){
+		var values = target_input.value.split(',');
+		for(var i = 0; i < values.length; i++){
+			parentNode.insertBefore(createInputElement(i, values[i]), btn_add);
+		}
+	}else
+		parentNode.insertBefore(createInputElement(0), btn_add);
+	
+	btn_add.addEventListener('click', function(){
+		var last_input = lastElemOfArray(parentNode.querySelectorAll('input'));
+		parentNode.insertBefore(createInputElement(parseInt(lastElemOfArray(last_input.id.split('_'))) + 1), btn_add);
+	}, false);
+
+	btn_remove.addEventListener('click', function(){
+		var inputs = parentNode.querySelectorAll('input');
+		if(inputs.length > 1)
+			parentNode.removeChild(lastElemOfArray(inputs));
+	})
+
+};
+</script>
+{% endblock %}
+
+<input type="{{ widget.type }}" name="{{ widget.name }}"{% if widget.value != None %} value="{{ widget.value|stringformat:'s' }}"{% endif %}{% for name, value in widget.attrs.items %}{% if value is not False %} {{ name }}{% if value is not True %}="{{ value|stringformat:'s' }}"{% endif %}{% endif %}{% endfor %}>
+<div id="id_list">
+<a href="#" id="btn_list_add">add</a>
+<a href="#" id="btn_list_remove">remove</a>
+</div>
+

@@ -1,0 +1,15 @@
+LICENSE
+MANIFEST.in
+README.rst
+setup.py
+django_listfield.egg-info/PKG-INFO
+django_listfield.egg-info/SOURCES.txt
+django_listfield.egg-info/dependency_links.txt
+django_listfield.egg-info/not-zip-safe
+django_listfield.egg-info/requires.txt
+django_listfield.egg-info/top_level.txt
+listfield/__init__.py
+listfield/apps.py
+listfield/fields.py
+listfield/widgets.py
+listfield/templates/list.html
